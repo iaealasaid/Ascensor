@@ -1,9 +1,44 @@
 fileFormatVersion: 2
-guid: c0006accafca80f429363d63d6b3d586
+guid: d68dfe6440c7d9f44a48d049161e7bbc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DetalleAmarillo
+    second: {fileID: 2100000, guid: 12c58adb362407b44a3110336117e64f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Madera
+    second: {fileID: 2100000, guid: c0c73c8c21fb7ee4295060e43c36d986, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MatLampara2
+    second: {fileID: 2100000, guid: c739746f8ffce6d45b4f6668070ea677, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MatNegro
+    second: {fileID: 2100000, guid: 75bba0c77319e7c41a1c34846ff646c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal2
+    second: {fileID: 2100000, guid: 4975eb416f9f1f84f9f64f8dbec3c050, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pared
+    second: {fileID: 2100000, guid: 34f1ab381185aff49aba2233086c00a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PisoRombos
+    second: {fileID: 2100000, guid: e967f84771cc11045ab8f75f15bd8819, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
