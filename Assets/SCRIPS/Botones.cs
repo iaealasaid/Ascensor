@@ -3,7 +3,7 @@ using UnityEngine;
 public class Botones : MonoBehaviour
 {
     public float velocidad = 2;
-    public float altura = 4;
+    public float altura = 7;
 
     float tiempo = 0;
     float direccion = 0;
