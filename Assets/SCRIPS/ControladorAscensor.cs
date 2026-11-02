@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.Playables;
 public class ControladorAscensor : MonoBehaviour
 {
     [Header("Ascensor")]
@@ -24,6 +24,13 @@ public class ControladorAscensor : MonoBehaviour
 
     private int direccion = 0;
     private bool ocupado = false;
+    
+    [Header("Escenarios")]
+    public GameObject[] escenarios;
+    public PlayableDirector[] directores;
+    public float esperaCambio = 3f;
+
+    private int indiceEscenario = 0;
 
     private SkinnedMeshRenderer[] renderersMuros;
 
@@ -40,6 +47,16 @@ public class ControladorAscensor : MonoBehaviour
             }
         }
     }
+    void Start()
+{
+    // Solo el primer escenario activo al empezar
+    for (int i = 0; i < escenarios.Length; i++)
+    {
+        escenarios[i].SetActive(i == indiceEscenario);
+    }
+
+    directores[indiceEscenario].Play();
+}
 
     void Update()
     {
@@ -97,19 +114,43 @@ public class ControladorAscensor : MonoBehaviour
         // 1. Cerrar antes de moverse
         yield return AnimarBlendShapes(0f, velocidadCerrar);
 
-        // 2. Comenzar movimiento
+        //Cambia el escenario
+        direccion = nuevaDireccion;
+        StartCoroutine(CambiarEscenario());
+
+        // Comenzar movimiento
         direccion = nuevaDireccion;
 
-        // 3. Esperar el tiempo del recorrido
+        // Esperar el tiempo del recorrido
         yield return new WaitForSeconds(SecondsToStop);
 
-        // 4. Detener movimiento
+        // Detener movimiento
         direccion = 0;
 
-        // 5. Abrir al terminar
+        //  Abrir al terminar
         yield return AnimarBlendShapes(100f, velocidadAbrir);
 
         ocupado = false;
+    }
+    IEnumerator CambiarEscenario()
+    {
+        // Espera 3 segundos desde que se aprieta el botón
+        yield return new WaitForSeconds(esperaCambio);
+
+        // Si ya es el último escenario, no hace nada
+        if (indiceEscenario >= escenarios.Length - 1)
+            yield break;
+
+        // Apaga el escenario actual
+        directores[indiceEscenario].Stop();
+        escenarios[indiceEscenario].SetActive(false);
+
+        // Pasa al siguiente
+        indiceEscenario++;
+
+        // Enciende el nuevo y lanza su timeline
+        escenarios[indiceEscenario].SetActive(true);
+        directores[indiceEscenario].Play();
     }
 
     IEnumerator AnimarBlendShapes(float objetivo, float velocidadCambio)
