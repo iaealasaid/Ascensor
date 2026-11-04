@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fbbd5f8d603254b45a6d2512cbbb7627
+guid: 66d6373a82f47ed47a589ea6e699e3c3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,23 +7,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BaseGorroYUniforme
-    second: {fileID: 2100000, guid: 6cd5a0ece6ae51f45b845beeb4f35821, type: 2}
+      name: DetalleAmarillo
+    second: {fileID: 2100000, guid: 12c58adb362407b44a3110336117e64f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Line2Gorro
-    second: {fileID: 2100000, guid: a76846497fdd7e04c8d496bb18992618, type: 2}
+      name: Madera
+    second: {fileID: 2100000, guid: c0c73c8c21fb7ee4295060e43c36d986, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MangaUniforme
-    second: {fileID: 2100000, guid: 2badeaf778412a740b37d9e31dc4e8f9, type: 2}
+      name: MatLampara2
+    second: {fileID: 2100000, guid: c739746f8ffce6d45b4f6668070ea677, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: a71796ee80b26984bba27cc594b41b1f, type: 2}
+      name: MatNegro
+    second: {fileID: 2100000, guid: 75bba0c77319e7c41a1c34846ff646c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal2
+    second: {fileID: 2100000, guid: 4975eb416f9f1f84f9f64f8dbec3c050, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pared
+    second: {fileID: 2100000, guid: 34f1ab381185aff49aba2233086c00a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PisoRombos
+    second: {fileID: 2100000, guid: e967f84771cc11045ab8f75f15bd8819, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

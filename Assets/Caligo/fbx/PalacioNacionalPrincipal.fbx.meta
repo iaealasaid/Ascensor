@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2fe87f6be2ea5c4b834dab05e2fed6d
+guid: 411a79be83161f543a50c082b7c50d00
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -54,86 +54,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: PisoRombos
     second: {fileID: 2100000, guid: e967f84771cc11045ab8f75f15bd8819, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: DetallesNacional
-    second: {fileID: 2800000, guid: 24c413ce2cdec71469cff28ad8864178, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather034D_1K-PNG_Color
-    second: {fileID: 2800000, guid: 58bfbe7bc184b6246aabbf47d6df920b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather034D_1K-PNG_NormalGL
-    second: {fileID: 2800000, guid: 28c9e6fbfd1992845ba1af525abcded4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather034D_1K-PNG_Roughness
-    second: {fileID: 2800000, guid: 199256efb1518654faf6770d3cd53782, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather038_1K-PNG_Color
-    second: {fileID: 2800000, guid: a9acad99b2a59104bbeea91bc6b49af0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather038_1K-PNG_NormalGL
-    second: {fileID: 2800000, guid: e7f6505d0d034f64d8fdaafc18009332, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Leather038_1K-PNG_Roughness
-    second: {fileID: 2800000, guid: bbc1d2f6fa1b2d64aada10d2af4d183e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plaster001_1K-PNG_Color
-    second: {fileID: 2800000, guid: 31f3021e24464c9489d980ad431f9410, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plaster001_1K-PNG_NormalGL
-    second: {fileID: 2800000, guid: 1607e5f93b27afc4092b5b2b70f3106a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plaster001_1K-PNG_Roughness
-    second: {fileID: 2800000, guid: 48f8f96c9893e60429da5e63773d7346, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plastic018B_1K-PNG_Color
-    second: {fileID: 2800000, guid: 74026d0247540844ab023c37132822fb, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plastic018B_1K-PNG_NormalGL
-    second: {fileID: 2800000, guid: f2bd03fb3d6d4be43a553c1ede04fede, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Plastic018B_1K-PNG_Roughness
-    second: {fileID: 2800000, guid: 96b96e84afb75bd40882afd87ec08ad3, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tiles139_1K-PNG_Color
-    second: {fileID: 2800000, guid: c5e9b213c06bdc844bc408f97848d449, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tiles139_1K-PNG_NormalGL
-    second: {fileID: 2800000, guid: 2625516f68949774db8c958ab9080b8a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tiles139_1K-PNG_Roughness
-    second: {fileID: 2800000, guid: e36298418d0e57f45a3f763baf363947, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
