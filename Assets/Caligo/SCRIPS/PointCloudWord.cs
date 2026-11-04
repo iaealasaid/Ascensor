@@ -1,17 +1,16 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class PointCloudWord : MonoBehaviour
 {
     [Header("Generación")]
     public Mesh sourceMesh;               // mesh de las letras (FBX de Blender)
-    [Range(500, 20000)] public int pointCount = 3000;
+    [Range(500, 20000)] public int pointCount = 6000;
     public int seed = 1;
 
     [Header("Mano")]
-    public Transform[] handPoints;        // punta de índice, punta de medio, palma, de ambas manos
-    public float touchRadius = 0.05f;     // metros
+    public Transform[] handPoints;        // puntas de los dedos o esfera de prueba
+    public float touchRadius = 0.15f;     // metros
 
     Vector3[] points;
     Bounds touchBounds;
@@ -85,6 +84,7 @@ public class PointCloudWord : MonoBehaviour
         }
 
         var mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         mesh.vertices = verts;
         mesh.uv = corner;
         mesh.uv2 = rnd;
@@ -106,11 +106,16 @@ public class PointCloudWord : MonoBehaviour
             return;
         }
 
+        if (handPoints == null) return;
+
         float scale = Mathf.Max(0.0001f, transform.lossyScale.x);
-        float r2 = (touchRadius / scale) * (touchRadius / scale);
+        float r = touchRadius / scale;
+        float r2 = r * r;
 
         foreach (var hp in handPoints)
         {
+            if (hp == null) continue;
+
             Vector3 local = transform.InverseTransformPoint(hp.position);
             if (!touchBounds.Contains(local)) continue;
 
@@ -139,5 +144,14 @@ public class PointCloudWord : MonoBehaviour
             if (d > maxDist) maxDist = d;
         }
         endTime = Time.timeSinceLevelLoad + maxDist * mat.GetFloat("_Delay") + mat.GetFloat("_FadeTime") + 0.2f;
+    }
+
+    // Muestra el radio de contacto en la ventana Scene
+    void OnDrawGizmosSelected()
+    {
+        if (handPoints == null) return;
+        Gizmos.color = Color.yellow;
+        foreach (var hp in handPoints)
+            if (hp != null) Gizmos.DrawWireSphere(hp.position, touchRadius);
     }
 }
