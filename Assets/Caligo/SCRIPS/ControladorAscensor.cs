@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Playables;
+
 public class ControladorAscensor : MonoBehaviour
 {
     [Header("Ascensor")]
@@ -14,6 +15,22 @@ public class ControladorAscensor : MonoBehaviour
     [SerializeField] private float velocidad = 2f;
     [SerializeField] private float SecondsToStop = 5f;
 
+    [Header("Aceleración / Frenado")]
+    [Tooltip("Segundos que tarda en llegar a la velocidad máxima al arrancar")]
+    [SerializeField] private float tiempoAceleracion = 1.5f;
+    [Tooltip("Segundos que tarda en frenar al llegar")]
+    [SerializeField] private float tiempoFrenado = 1.5f;
+    [Tooltip("Curva de arranque: eje X = progreso (0-1), eje Y = % de velocidad (0-1)")]
+    [SerializeField] private AnimationCurve curvaAceleracion = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    [Tooltip("Curva de frenado: eje X = progreso (0-1), eje Y = % de velocidad (1 a 0)")]
+    [SerializeField] private AnimationCurve curvaFrenado = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+
+    [Header("Pausas")]
+    [Tooltip("Segundos que espera con la puerta cerrada antes de empezar a moverse")]
+    [SerializeField] private float esperaAntesDeMover = 1f;
+    [Tooltip("Segundos que espera después de llegar antes de abrir la puerta")]
+    [SerializeField] private float esperaAntesDeAbrir = 1f;
+
     [Header("BlendShapes")]
     [SerializeField] private int blendShapeSubir = 0;
     [SerializeField] private int blendShapeBajar = 1;
@@ -23,8 +40,9 @@ public class ControladorAscensor : MonoBehaviour
     [SerializeField] private float velocidadAbrir = 25f;
 
     private int direccion = 0;
+    private float factorVelocidad = 0f; // 0 = detenido, 1 = velocidad máxima
     private bool ocupado = false;
-    
+
     [Header("Escenarios")]
     public GameObject[] escenarios;
     public PlayableDirector[] directores;
@@ -47,16 +65,17 @@ public class ControladorAscensor : MonoBehaviour
             }
         }
     }
-    void Start()
-{
-    // Solo el primer escenario activo al empezar
-    for (int i = 0; i < escenarios.Length; i++)
-    {
-        escenarios[i].SetActive(i == indiceEscenario);
-    }
 
-    directores[indiceEscenario].Play();
-}
+    void Start()
+    {
+        // Solo el primer escenario activo al empezar
+        for (int i = 0; i < escenarios.Length; i++)
+        {
+            escenarios[i].SetActive(i == indiceEscenario);
+        }
+
+        directores[indiceEscenario].Play();
+    }
 
     void Update()
     {
@@ -66,8 +85,8 @@ public class ControladorAscensor : MonoBehaviour
 
         if (direccion == 0) return;
 
-        // Mover únicamente los muros
-        float movimiento = -direccion * velocidad * Time.deltaTime;
+        // Mover únicamente los muros (la velocidad depende del factor)
+        float movimiento = -direccion * velocidad * factorVelocidad * Time.deltaTime;
 
         float limite = separacionMuros * 1.5f;
         float ciclo = separacionMuros * muros.Length;
@@ -114,27 +133,67 @@ public class ControladorAscensor : MonoBehaviour
         // 1. Cerrar antes de moverse
         yield return AnimarBlendShapes(0f, velocidadCerrar);
 
-        //Cambia el escenario
-        direccion = nuevaDireccion;
+        // 2. Pausa con la puerta cerrada
+        if (esperaAntesDeMover > 0f)
+            yield return new WaitForSeconds(esperaAntesDeMover);
+
+        // Cambia el escenario (el contador arranca junto con el movimiento)
         StartCoroutine(CambiarEscenario());
 
         // Comenzar movimiento
         direccion = nuevaDireccion;
 
-        // Esperar el tiempo del recorrido
-        yield return new WaitForSeconds(SecondsToStop);
+        // 3. Aceleración gradual
+        yield return AnimarFactor(curvaAceleracion, tiempoAceleracion, 0f, 1f);
+
+        // 4. Velocidad constante
+        float tiempoConstante = Mathf.Max(0f, SecondsToStop - tiempoAceleracion - tiempoFrenado);
+        factorVelocidad = 1f;
+        yield return new WaitForSeconds(tiempoConstante);
+
+        // 5. Frenado gradual
+        yield return AnimarFactor(curvaFrenado, tiempoFrenado, 1f, 0f);
 
         // Detener movimiento
+        factorVelocidad = 0f;
         direccion = 0;
 
-        //  Abrir al terminar
+        // 6. Pausa al llegar, con la puerta todavía cerrada
+        if (esperaAntesDeAbrir > 0f)
+            yield return new WaitForSeconds(esperaAntesDeAbrir);
+
+        // 7. Abrir
         yield return AnimarBlendShapes(100f, velocidadAbrir);
 
         ocupado = false;
     }
+
+    // Anima factorVelocidad siguiendo una curva durante 'duracion' segundos
+    IEnumerator AnimarFactor(AnimationCurve curva, float duracion, float desde, float hasta)
+    {
+        if (duracion <= 0f)
+        {
+            factorVelocidad = hasta;
+            yield break;
+        }
+
+        float t = 0f;
+        while (t < duracion)
+        {
+            t += Time.deltaTime;
+            float progreso = Mathf.Clamp01(t / duracion);
+
+            // La curva devuelve un valor 0-1 (o 1-0 en el frenado)
+            factorVelocidad = curva.Evaluate(progreso);
+            yield return null;
+        }
+
+        factorVelocidad = hasta;
+    }
+
     IEnumerator CambiarEscenario()
     {
-        // Espera 3 segundos desde que se aprieta el botón
+        // Espera desde que el ascensor empieza a moverse
         yield return new WaitForSeconds(esperaCambio);
 
         // Si ya es el último escenario, no hace nada

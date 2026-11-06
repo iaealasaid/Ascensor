@@ -796,7 +796,7 @@ Transform:
   m_GameObject: {fileID: 185590949}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.684, y: 2.361, z: -0}
+  m_LocalPosition: {x: -2.644, y: 2.361, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -836,7 +836,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.754717, g: 0.71559185, b: 0.6514774, a: 1}
-  m_Intensity: 6.04
+  m_Intensity: 2.17
   m_Range: 2.9182467
   m_SpotAngle: 74.961555
   m_InnerSpotAngle: 0
@@ -1960,8 +1960,6 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 4085812418422238171, guid: 2a68cb463b881e44fbc94dd28362d35a, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -5304906086707148969, guid: 2a68cb463b881e44fbc94dd28362d35a, type: 2}
     value: {fileID: 2065287799}
   - key: {fileID: -4466897398888549688, guid: 2a68cb463b881e44fbc94dd28362d35a, type: 2}
@@ -2006,7 +2004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &524130763
 Transform:
   m_ObjectHideFlags: 0
@@ -2106,7 +2104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &545882003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,13 +2216,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545882002}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.14714609, y: -0.6916271, z: 0.14714612, w: 0.6916271}
   m_LocalPosition: {x: 0, y: 1.449, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 24.022, y: -90, z: 0}
 --- !u!1 &549180971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,8 +2895,60 @@ MonoBehaviour:
   - {fileID: 613106850}
   - {fileID: 1821821078}
   separacionMuros: 7
-  velocidad: 1.3
-  SecondsToStop: 5.4
+  velocidad: 0.6
+  SecondsToStop: 13.21
+  tiempoAceleracion: 1.5
+  tiempoFrenado: 1.5
+  curvaAceleracion:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curvaFrenado:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  esperaAntesDeMover: 1
+  esperaAntesDeAbrir: 1
   blendShapeSubir: 0
   blendShapeBajar: 1
   blendShapeDetener: 2
@@ -2920,7 +2970,7 @@ MonoBehaviour:
   - {fileID: 934978754}
   - {fileID: 315646590}
   - {fileID: 315646590}
-  esperaCambio: 3
+  esperaCambio: 0
 --- !u!4 &625371097
 Transform:
   m_ObjectHideFlags: 0
@@ -5812,7 +5862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1302181017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6245,7 +6295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1360315919
 Transform:
   m_ObjectHideFlags: 0
@@ -6950,7 +7000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1548262595
 Transform:
   m_ObjectHideFlags: 0
@@ -9731,7 +9781,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.754717, g: 0.71559185, b: 0.6514774, a: 1}
-  m_Intensity: 6.04
+  m_Intensity: 2.17
   m_Range: 2.9182467
   m_SpotAngle: 74.961555
   m_InnerSpotAngle: 0
