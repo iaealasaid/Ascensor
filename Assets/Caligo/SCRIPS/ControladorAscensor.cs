@@ -31,13 +31,20 @@ public class ControladorAscensor : MonoBehaviour
     [Tooltip("Segundos que espera después de llegar antes de abrir la puerta")]
     [SerializeField] private float esperaAntesDeAbrir = 1f;
 
+    [Header("Puerta")]
+    [Tooltip("Segundos que tarda en cerrarse")]
+    [SerializeField] private float tiempoCerrar = 1f;
+    [Tooltip("Segundos que tarda en abrirse")]
+    [SerializeField] private float tiempoAbrir = 4f;
+    [Tooltip("Curva de cierre: X = progreso (0-1), Y = avance de la puerta (0-1)")]
+    [SerializeField] private AnimationCurve curvaCerrar = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    [Tooltip("Curva de apertura: X = progreso (0-1), Y = avance de la puerta (0-1)")]
+    [SerializeField] private AnimationCurve curvaAbrir = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
     [Header("BlendShapes")]
     [SerializeField] private int blendShapeSubir = 0;
     [SerializeField] private int blendShapeBajar = 1;
     [SerializeField] private int blendShapeDetener = 2;
-
-    [SerializeField] private float velocidadCerrar = 100f;
-    [SerializeField] private float velocidadAbrir = 25f;
 
     private int direccion = 0;
     private float factorVelocidad = 0f; // 0 = detenido, 1 = velocidad máxima
@@ -131,7 +138,7 @@ public class ControladorAscensor : MonoBehaviour
         ocupado = true;
 
         // 1. Cerrar antes de moverse
-        yield return AnimarBlendShapes(0f, velocidadCerrar);
+        yield return AnimarBlendShapes(0f, tiempoCerrar, curvaCerrar);
 
         // 2. Pausa con la puerta cerrada
         if (esperaAntesDeMover > 0f)
@@ -163,7 +170,7 @@ public class ControladorAscensor : MonoBehaviour
             yield return new WaitForSeconds(esperaAntesDeAbrir);
 
         // 7. Abrir
-        yield return AnimarBlendShapes(100f, velocidadAbrir);
+        yield return AnimarBlendShapes(100f, tiempoAbrir, curvaAbrir);
 
         ocupado = false;
     }
@@ -212,51 +219,55 @@ public class ControladorAscensor : MonoBehaviour
         directores[indiceEscenario].Play();
     }
 
-    IEnumerator AnimarBlendShapes(float objetivo, float velocidadCambio)
+    IEnumerator AnimarBlendShapes(float objetivo, float duracion, AnimationCurve curva)
     {
-        if (velocidadCambio <= 0f)
-            yield break;
+        int[] indices = { blendShapeSubir, blendShapeBajar, blendShapeDetener };
 
-        bool terminado = false;
-
-        while (!terminado)
+        // Guardar el valor inicial de cada blend shape
+        float[][] inicio = new float[renderersMuros.Length][];
+        for (int r = 0; r < renderersMuros.Length; r++)
         {
-            terminado = true;
+            SkinnedMeshRenderer rend = renderersMuros[r];
+            if (rend == null || rend.sharedMesh == null) continue;
 
-            foreach (SkinnedMeshRenderer renderer in renderersMuros)
+            inicio[r] = new float[indices.Length];
+            for (int k = 0; k < indices.Length; k++)
             {
-                if (renderer == null || renderer.sharedMesh == null)
-                    continue;
-
-                int[] indices = {
-                    blendShapeSubir,
-                    blendShapeBajar,
-                    blendShapeDetener
-                };
-
-                foreach (int indice in indices)
-                {
-                    if (indice < 0 ||
-                        indice >= renderer.sharedMesh.blendShapeCount)
-                        continue;
-
-                    float actual = renderer.GetBlendShapeWeight(indice);
-
-                    float nuevo = Mathf.MoveTowards(
-                        actual,
-                        objetivo,
-                        velocidadCambio * Time.deltaTime
-                    );
-
-                    renderer.SetBlendShapeWeight(indice, nuevo);
-
-                    if (!Mathf.Approximately(nuevo, objetivo))
-                        terminado = false;
-                }
+                if (indices[k] < 0 || indices[k] >= rend.sharedMesh.blendShapeCount) continue;
+                inicio[r][k] = rend.GetBlendShapeWeight(indices[k]);
             }
+        }
 
-            if (!terminado)
+        if (duracion > 0f)
+        {
+            float t = 0f;
+            while (t < duracion)
+            {
+                t += Time.deltaTime;
+                float progreso = curva.Evaluate(Mathf.Clamp01(t / duracion));
+                AplicarBlendShapes(inicio, objetivo, progreso, indices);
                 yield return null;
+            }
+        }
+
+        // Asegurar el valor final exacto
+        AplicarBlendShapes(inicio, objetivo, 1f, indices);
+    }
+
+    void AplicarBlendShapes(float[][] inicio, float objetivo, float progreso, int[] indices)
+    {
+        for (int r = 0; r < renderersMuros.Length; r++)
+        {
+            SkinnedMeshRenderer rend = renderersMuros[r];
+            if (rend == null || rend.sharedMesh == null || inicio[r] == null) continue;
+
+            for (int k = 0; k < indices.Length; k++)
+            {
+                if (indices[k] < 0 || indices[k] >= rend.sharedMesh.blendShapeCount) continue;
+
+                float valor = Mathf.LerpUnclamped(inicio[r][k], objetivo, progreso);
+                rend.SetBlendShapeWeight(indices[k], valor);
+            }
         }
     }
 }

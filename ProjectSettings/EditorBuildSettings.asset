@@ -9,7 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ascensor.unity
     guid: 7dd3b89f24c195d42b76a9fc90d2f517
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9aae84ada9e84a64591582176eb53ec3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 0a26bed28511cb84ba129aacdec6d538, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36ffbce1c78c7e24cbdd5548dc681d10, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6c88bca0bd4ff914c84317772b16ff69, type: 2}
   m_UseUCBPForAssetBundles: 0

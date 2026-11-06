@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: c260004295e3f7d428dab2657ff1edb5
+guid: bedaacba6f5b05e4dbc6498fae28d930
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concreto
+    second: {fileID: 2100000, guid: 6c167a0aedd540b47a7add382b041eec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ladrillos
+    second: {fileID: 2100000, guid: 8edd6e9253fe27d499456be8c4a71ea4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal2
+    second: {fileID: 2100000, guid: 4975eb416f9f1f84f9f64f8dbec3c050, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
