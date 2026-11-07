@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Playables;
+using UnityEngine.Audio;
 
 public class ControladorAscensor : MonoBehaviour
 {
@@ -55,12 +56,17 @@ public class ControladorAscensor : MonoBehaviour
     public PlayableDirector[] directores;
     public float esperaCambio = 3f;
 
+    [Header("AudioSourceBoton")]
+    [SerializeField]  private AudioSource audioSource;
+    [SerializeField]  private AudioClip audclipbtn;
     private int indiceEscenario = 0;
-
     private SkinnedMeshRenderer[] renderersMuros;
+
+
 
     private void Awake()
     {
+      
         renderersMuros = new SkinnedMeshRenderer[muros.Length];
 
         for (int i = 0; i < muros.Length; i++)
@@ -123,12 +129,15 @@ public class ControladorAscensor : MonoBehaviour
 
     public void Subir()
     {
+        audioSource.PlayOneShot(audclipbtn, 1f);
         if (!ocupado)
             StartCoroutine(SecuenciaAscensor(1));
+        
     }
 
     public void Bajar()
     {
+        audioSource.PlayOneShot(audclipbtn, 1f);
         if (!ocupado)
             StartCoroutine(SecuenciaAscensor(-1));
     }
