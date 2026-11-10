@@ -90,13 +90,13 @@ public class ControladorAscensor : MonoBehaviour
 
     void Start()
     {
-        // Solo el primer escenario activo al empezar
+       /* // Solo el primer escenario activo al empezar
         for (int i = 0; i < escenarios.Length; i++)
         {
             escenarios[i].SetActive(i == indiceEscenario);
         }
 
-        directores[indiceEscenario].Play();
+        directores[indiceEscenario].Play(); */
     }
 
     void Update()

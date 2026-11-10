@@ -49,7 +49,7 @@ public class PrenderBotonesInicio : MonoBehaviour
         // 2. Ubicar al jugador mientras nadie ve el salto
         if (camPosition != null)
         {
-            Vector3 nuevaPos = new Vector3(-0.24f, 0.046f, 0);
+            Vector3 nuevaPos = new Vector3(-0.305f, 0.077f, 0.095f);
             Quaternion nuevaRot = Quaternion.Euler(0, -90, 0);
             camPosition.transform.SetPositionAndRotation(nuevaPos, nuevaRot);
         }
@@ -66,7 +66,7 @@ public class PrenderBotonesInicio : MonoBehaviour
             }
             colorAdjustments.colorFilter.value = Color.white;
         }
-        ActivarDirectorInicial();
+       // ActivarDirectorInicial();
 
         // 4. Esperar el tiempo restante si timeToWait es mayor al segundo inicial
         float tiempoRestante = Mathf.Max(0, timeToWait - 1.0f);
@@ -78,13 +78,13 @@ public class PrenderBotonesInicio : MonoBehaviour
         // 5. Activar los botones
         ActivationPokes();
     }
-
+    /*
     private void ActivarDirectorInicial()
     {
         director0.gameObject.SetActive(true);
         director0.GetComponent<PlayableDirector>().Play();
 
-    }
+    }*/
     private void ActivationPokes()
     {
         pokeArriba.SetActive(true);
