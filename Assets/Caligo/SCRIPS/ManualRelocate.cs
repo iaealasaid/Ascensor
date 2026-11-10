@@ -25,7 +25,7 @@ public class ManualRelocate : MonoBehaviour
     private IEnumerator WaitToStartDirector()
     {
         nivel0.gameObject.SetActive(true);
-        yield return new WaitForSeconds(5F);
+        yield return new WaitForSeconds(8F);
         positionHotSpot.SetActive(false);
         pokeStart.SetActive(false);
         yield return new WaitForSeconds(0.5f);

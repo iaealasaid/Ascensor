@@ -68,7 +68,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Madera
-    second: {fileID: 2100000, guid: 11f22e1f3174c1e429f40a14c57905d7, type: 2}
+    second: {fileID: 2100000, guid: c0c73c8c21fb7ee4295060e43c36d986, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

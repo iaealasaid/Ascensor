@@ -18,7 +18,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MatLampara2
-    second: {fileID: 2100000, guid: c739746f8ffce6d45b4f6668070ea677, type: 2}
+    second: {fileID: 2100000, guid: 2484f0f7450284a4ebbb94aa0c1521ba, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

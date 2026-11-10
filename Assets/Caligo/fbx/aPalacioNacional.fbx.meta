@@ -1,9 +1,59 @@
 fileFormatVersion: 2
-guid: b31a5d8c5eb09e14f9982e4897633604
+guid: 74e853164ff86d745960bdcc68ffd246
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DetalleAmarillo
+    second: {fileID: 2100000, guid: 12c58adb362407b44a3110336117e64f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DetalleGris
+    second: {fileID: 2100000, guid: 2a82772f137f79949b2a939d7ffb89dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DetalleTerra
+    second: {fileID: 2100000, guid: 154d489f5137aa14a9d3764a53c4274c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DetallesNacional
+    second: {fileID: 2100000, guid: 90d7377249cfd3e41974d5dc367efa7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MatLampara2
+    second: {fileID: 2100000, guid: c739746f8ffce6d45b4f6668070ea677, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MatNegro
+    second: {fileID: 2100000, guid: 75bba0c77319e7c41a1c34846ff646c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pared
+    second: {fileID: 2100000, guid: 34f1ab381185aff49aba2233086c00a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PisoAmarillo
+    second: {fileID: 2100000, guid: e8f1d163976f6de42a73fb335764c053, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PisoRojo
+    second: {fileID: 2100000, guid: f4cda8d207b37f54aa59d983d64480e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PisoRombos
+    second: {fileID: 2100000, guid: e967f84771cc11045ab8f75f15bd8819, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
